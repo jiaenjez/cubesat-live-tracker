@@ -1,5 +1,5 @@
 export class Constants {
-  public static DEFAULT_ZOOM = 4;
-  public static DEFAULT_LATITUDE = 47.4394;
-  public static DEFAULT_LONGITUDE = 8.9821;
+  public static DEFAULT_ZOOM = 7;
+  public static DEFAULT_LATITUDE = 33.6405;
+  public static DEFAULT_LONGITUDE = -117.8443;
 }
