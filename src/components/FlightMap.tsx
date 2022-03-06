@@ -19,6 +19,13 @@ import FlightLandFlippedIcon from './../resources/flight_land-24px_flippedx.svg'
 import FlightTakeoffIcon from './../resources/flight_takeoff-24px.svg';
 import FlightTakeoffFlippedIcon from './../resources/flight_takeoff-24px_flippedx.svg';
 import { Map } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
+
+// The following is required to stop "npm build" from transpiling mapbox code.
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 interface ILocalProps {
   stateVectors: IStateVectorData;
@@ -133,7 +140,7 @@ const FlightMap: React.FC<Props> = (props) => {
   const handleLoad = (e: MapboxEvent<undefined>) => {
 
     const map = e.target;
-    if (map == undefined)
+    if (map === undefined)
       return;
 
     addMapSources(map);
@@ -142,7 +149,7 @@ const FlightMap: React.FC<Props> = (props) => {
   const handleStyleData = (e: MapStyleDataEvent) => {
 
     const map = e.target;
-    if (map == undefined)
+    if (map === undefined)
       return;
 
     addMapSources(map);
@@ -150,7 +157,7 @@ const FlightMap: React.FC<Props> = (props) => {
 
   const handleClick = (e: MapLayerMouseEvent) => {
 
-    if (e.features == undefined || e.features.length <= 0)
+    if (e.features === undefined || e.features.length <= 0)
       return;
 
     const selectedFeature = e.features[0] as Feature;
